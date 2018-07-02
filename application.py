@@ -1,4 +1,4 @@
-from cs50 import SQL
+from sqlalchemy import create_engine
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
@@ -28,7 +28,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
+engine = create_engine('sqlite:///:memory:', echo=True)
 
 def port_val(portfolio_dict):
     """Current total value of stock in portfolio
